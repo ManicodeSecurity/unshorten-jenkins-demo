@@ -13,11 +13,12 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        def customImage = docker.build("${imageName}:${env.BUILD_ID}")
-        
+    
+        sh "docker build -v /var/run/docker.sock:/var/run/docker.sock -t ${imageName} -f applications/link-unshorten/Dockerfile applications/link-unshorten"
+    
     stage "Push"
 
-        customImage.push()
+        sh "docker -v /var/run/docker.sock:/var/run/docker.sock push ${imageName}"
 
     stage "Deploy"
 
