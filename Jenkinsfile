@@ -1,4 +1,2 @@
-docker.image('maven:3.3.3-jdk-8').inside {
-  git '…your-sources…'
-  sh 'mvn -B clean install'
-}
+def customImage = docker.build("my-image:${env.BUILD_ID}")
+customImage.push()
