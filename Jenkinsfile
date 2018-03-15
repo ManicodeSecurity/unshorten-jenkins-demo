@@ -13,7 +13,7 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        def customImage = docker.build("${imageName}:${env.BUILD_ID} -t applications/link-unshorten/Dockerfile applications/link-unshorten")
+        def customImage = docker.build("${imageName}:${env.BUILD_ID}")
         
     stage "Push"
 
