@@ -13,10 +13,12 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "docker images"
+    
+        sh "docker build -t ${imageName} -f applications/link-unshorten/Dockerfile applications/link-unshorten"
     
     stage "Push"
 
+        sh "docker push ${imageName}"
 
     stage "Deploy"
 
