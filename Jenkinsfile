@@ -13,8 +13,10 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "ls -a"
         sh "docker build -t ${imageName} . "
+
+    stage "Scan"
+        sh "./clair/run.sh"
     
     stage "Push"
 
