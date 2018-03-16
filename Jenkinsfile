@@ -13,14 +13,14 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "docker build -t ${imageName} . "
+        //sh "docker build -t ${imageName} . "
 
     stage "Push"
-        sh "docker push ${imageName}"
-        
+        //sh "docker push ${imageName}"
+
     stage "Scan"
         sh "sh run.sh"
-        sh "./clair-scanner --ip 127.0.0.1 -w k8s/deployment.yaml ${imageName}"
+        sh "./clair-scanner ${imageName} empty.yaml http://ip:6060 ip"
 
     stage "Deploy"
 
