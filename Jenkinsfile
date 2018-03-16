@@ -20,8 +20,8 @@ node {
         sh "docker images"
 
     stage "Scan"
-        sh "docker run -p 5432:5432 -d --name db arminc/clair-db:2017-09-18"
-        sh "docker run -p 6060:6060 --rm --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1"
+        sh "docker run -p 5432:5432 --rm -d --name db arminc/clair-db:2017-09-18"
+        sh "docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1"
         sh "docker pull ${imageName}"
         sh "sh run.sh"
         sh "./clair-scanner --ip 127.0.0.1 ${imageName}"
