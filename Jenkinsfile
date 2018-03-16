@@ -13,7 +13,7 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "docker build -t ${imageName} . "
+        // sh "docker build -t ${imageName} . "
 
     stage "Scan"
         sh "sh run.sh"
