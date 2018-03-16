@@ -21,7 +21,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "./clairctl ehalth"
+        sh "./clairctl health"
 
     stage "Deploy"
 
