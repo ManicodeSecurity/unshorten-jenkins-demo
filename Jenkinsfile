@@ -17,7 +17,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "docker-compose exec clairctl clairctl health"
+        sh "clairctl health"
     
     stage "Push"
 
