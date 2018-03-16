@@ -16,10 +16,9 @@ node {
         sh "docker build -t ${imageName} . "
 
     stage "Scan"
-        // sh "sh run.sh"
-        sh "docker run --net=host -d --name db arminc/clair-db:2017-09-18"
-        sh "docker run --net=host --add-host postgres:127.0.0.1 -d --name clair --net=host arminc/clair-local-scan:v2.0.1"
+        sh "sh run.sh"
         sh "./clair-scanner ${imageName} k8s/deployment.yaml http://127.0.0.1:6060 127.0.0.1"
+
     
     stage "Push"
 
