@@ -21,7 +21,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "docker-compose up -d postgres"
+        sh "docker-compose up -f clair/docker-compose.yaml -d postgres"
         sh "./clairctl health"
 
     stage "Deploy"
