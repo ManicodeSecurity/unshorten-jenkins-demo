@@ -13,7 +13,7 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-    
+        sh "ls -a"
         sh "docker build -t ${imageName} -f unshorten-api-jenkins/Dockerfile link-unshorten"
     
     stage "Push"
