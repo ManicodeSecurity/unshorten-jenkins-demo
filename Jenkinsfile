@@ -17,7 +17,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "./clair-scanner --ip 127.0.0.1 ${imageName}"
+        sh "./clair-scanner --ip 127.0.0.1 -w k8s/deployment.yaml ${imageName}"
 
     
     stage "Push"
