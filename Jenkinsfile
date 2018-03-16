@@ -20,7 +20,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "./clair-scanner ${imageName} empty.yaml http://ip:6060 ip"
+        sh "./clair-scanner ${imageName} empty.yaml http://127.0.0.1:6060 ip"
 
     stage "Deploy"
 
