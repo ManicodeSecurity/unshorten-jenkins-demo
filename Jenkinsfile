@@ -16,7 +16,7 @@ node {
         // sh "docker build -t ${imageName} . "
 
     stage "Scan"
-        sh 'sh run.sh'
+        sh "sh run.sh"
         sh "docker-compose exec clairctl clairctl health"
     
     stage "Push"
