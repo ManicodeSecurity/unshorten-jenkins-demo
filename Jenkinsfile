@@ -16,7 +16,7 @@ node {
         // sh "docker build -t ${imageName} . "
 
     stage "Scan"
-        sh './run.sh'
+        sh 'sh run.sh'
     
     stage "Push"
 
