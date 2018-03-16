@@ -17,7 +17,7 @@ node {
 
     stage "Scan"
         dir ('clair') { 
-        sh('run.sh')
+            sh 'run.sh'
         }
     
     stage "Push"
