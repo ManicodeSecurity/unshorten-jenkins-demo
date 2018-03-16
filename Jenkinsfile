@@ -17,7 +17,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "clairctl health"
+        sh "clairctl --log-level debug push ubuntu:16.04 --local"
     
     stage "Push"
 
