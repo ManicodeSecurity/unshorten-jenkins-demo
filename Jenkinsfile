@@ -14,7 +14,7 @@ node {
 
     stage "Build"
         sh "ls -a"
-        sh "docker build -t ${imageName} -f unshorten-api-jenkins/Dockerfile link-unshorten"
+        sh "docker build -t ${imageName} . "
     
     stage "Push"
 
@@ -22,6 +22,6 @@ node {
 
     stage "Deploy"
 
-        sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' unshorten-api-jenkins/k8s/deployment.yaml | kubectl apply -f -"
+        sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/link-unshorten"
 }
