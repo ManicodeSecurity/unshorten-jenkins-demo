@@ -15,15 +15,9 @@ node {
     stage "Build"
         // sh "docker build -t ${imageName} . "
 
-    stage('Clair Test') {
-        sh 'wget -nv -O klar http://artifactory.prod.cu.edu/artifactory/ext-archive-local/optiopay/klar/1.5/klar-1.5-linux-amd64'
-        sh 'chmod u+x klar'
-        def statusCode = sh script:"CLAIR_ADDR=${clair_endpoint} ./klar ${full_image_name}", returnStatus:true
-        if (statusCode!=0) {
-            currentBuild.result = 'FAILURE'
-            error "Docker Image did not pass Clair testing."
-        }
-    }
+    stage "Scan"
+        sh 'sh run.sh'
+        sh "docker-compose exec clairctl clairctl health"
     
     stage "Push"
 
