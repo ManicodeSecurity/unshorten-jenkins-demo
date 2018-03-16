@@ -16,9 +16,7 @@ node {
         // sh "docker build -t ${imageName} . "
 
     stage "Scan"
-        sh "cd clair"
-        sh "ls -a"
-        sh ".run.sh"
+        sh "cd clair && ./run.sh"
     
     stage "Push"
 
