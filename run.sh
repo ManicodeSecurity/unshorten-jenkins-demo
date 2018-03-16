@@ -1,5 +1,4 @@
 #!/bin/bash
-
-wget https://github.com/jgsqware/clairctl/releases/download/v1.2.8/clairctl-linux-amd64 --no-check-certificate
-mv clairctl-linux-amd64 clairctl
-chmod +x clairctl
+wget https://github.com/arminc/clair-scanner/releases/download/v5/clair-scanner_linux_amd64 --no-check-certificate
+mv clair-scanner_linux_amd64 clair-scanner
+chmod +x clair-scanner
