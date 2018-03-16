@@ -16,11 +16,12 @@ node {
         //sh "docker build -t ${imageName} . "
 
     stage "Push"
+        sh "docker images"
         //sh "docker push ${imageName}"
 
     stage "Scan"
         sh "sh run.sh"
-        sh "./clair-scanner ${imageName} empty.yaml http://127.0.0.1:6060 ip"
+        sh "./clair-scanner --ip 127.0.0.1 ${imageName}"
 
     stage "Deploy"
 
