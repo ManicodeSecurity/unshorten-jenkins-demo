@@ -13,14 +13,14 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "docker build -t ${imageName} . "
+        //sh "docker build -t ${imageName} . "
 
     stage "Push"
         sh "docker images"
-        sh "docker push ${imageName}"
+        //sh "docker push ${imageName}"
 
     stage "Scan"
-        sh "docker pull 127.0.0.1:30400/link-unshorten:78fb934"
+        sh "docker pull localhost:30400/link-unshorten:78fb934"
         //sh "sh run.sh"
         //sh "docker-compose up -f clair/docker-compose.yaml -d postgres"
         //sh "./clairctl health"
