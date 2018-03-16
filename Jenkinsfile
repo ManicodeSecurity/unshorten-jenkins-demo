@@ -20,9 +20,10 @@ node {
         //sh "docker push ${imageName}"
 
     stage "Scan"
-        sh "sh run.sh"
-        sh "docker-compose up -f clair/docker-compose.yaml -d postgres"
-        sh "./clairctl health"
+        sh "docker pull ${imageName}""
+        //sh "sh run.sh"
+        //sh "docker-compose up -f clair/docker-compose.yaml -d postgres"
+        //sh "./clairctl health"
 
     stage "Deploy"
 
