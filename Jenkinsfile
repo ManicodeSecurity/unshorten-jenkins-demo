@@ -21,7 +21,7 @@ node {
 
     stage "Scan"
         sh "sh run.sh"
-        sh "./clair-scanner --ip 127.0.0.1 registry:2"
+        sh "./clair-scanner -c http://docker:6060 --ip $(hostname -i) registry:2"
 
     stage "Deploy"
 
