@@ -24,7 +24,7 @@ node {
         sh "docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1"
         sh "docker pull ${imageName}"
         sh "sh run.sh"
-        sh "./clair-scanner --ip 127.0.0.1 ${imageName}"
+        sh "./clair-scanner --ip http://localhost:6060 ${imageName}"
 
     stage "Deploy"
 
