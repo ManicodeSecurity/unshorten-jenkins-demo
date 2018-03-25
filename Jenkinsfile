@@ -15,11 +15,11 @@ node {
     stage "Build"
         sh "echo building docker image..."
         sh "docker build -t ${imageName} . "
+        sh "docker images"
 
     stage "Push"
         sh "Pushing image to local repo..."
         sh "docker push ${imageName}"
-        sh "docker images"
 
     stage "Scan Docker Image"
         sh "Scanning docker image for vulnerabilities..."
