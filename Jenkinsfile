@@ -13,7 +13,6 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "building docker image..."
         sh "docker build -t ${imageName} . "
         sh "docker images"
 
@@ -21,28 +20,15 @@ node {
         sh "docker push ${imageName}"
 
     stage "Scan Docker Image"
-        sh "Scanning docker image for vulnerabilities..."
-        sh "bleep"
-        sh "bloop"
-        sh "bleep"
-        sh "PASSED"
+ 
 
     stage "Source Code Static Analysis"
-        sh "Running static analysis scan..."
-        sh "bleep"
-        sh "bloop"
-        sh "bleep"
-        sh "PASSED"
+
         
     stage "Kubernetes Analysis"
-        sh "Scanning Kubernetes configs for vulnerabilities..."
-        sh "bleep"
-        sh "bloop"
-        sh "bleep"
-        sh "PASSED"
+
 
     stage "Deploy"
-        sh "Deploying to Kubernetes cluster..."
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/link-unshorten"
 }
