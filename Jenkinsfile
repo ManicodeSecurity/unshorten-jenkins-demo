@@ -22,16 +22,28 @@ node {
         sh "docker images"
 
     stage "Scan Docker Image"
-        sh "echo scanning docker image for vulnerabilities..."
+        sh "Scanning docker image for vulnerabilities..."
+        sh "bleep"
+        sh "bloop"
+        sh "bleep"
+        sh "PASSED"
 
     stage "Source Code Static Analysis"
-        sh "echo Running static analysis scan..."
-
+        sh "Running static analysis scan..."
+        sh "bleep"
+        sh "bloop"
+        sh "bleep"
+        sh "PASSED"
+        
     stage "Kubernetes Analysis"
-        sh "Scanning Kubernetes configs for vulnerabilities"
+        sh "Scanning Kubernetes configs for vulnerabilities..."
+        sh "bleep"
+        sh "bloop"
+        sh "bleep"
+        sh "PASSED"
 
     stage "Deploy"
-
+        sh "Deploying to Kubernetes cluster..."
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/link-unshorten"
 }
