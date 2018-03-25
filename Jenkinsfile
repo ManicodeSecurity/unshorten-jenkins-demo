@@ -13,8 +13,7 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-        sh "echo building docker image..."
-        sh "${imageName}"
+        sh "building docker image..."
         sh "docker build -t ${imageName} . "
         sh "docker images"
 
