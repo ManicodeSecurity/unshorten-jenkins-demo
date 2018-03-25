@@ -1,4 +1,4 @@
-node {
+node('docker)' {
 
     checkout scm
 
@@ -19,12 +19,30 @@ node {
         sh "docker push ${imageName}"
         sh "docker images"
 
-    stage "Scan"
+    stage "Scan Docker Image"
         sh "docker run -p 5432:5432 --rm -d --name db arminc/clair-db:2017-09-18"
         sh "docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1"
         sh "docker pull ${imageName}"
         sh "sh run.sh"
         sh "./clair-scanner --ip http://localhost:6060 ${imageName}"
+
+    stage "Source Code Static Analysis"
+        node('docker') {
+            // .. 'stage' steps removed
+            /* Pull the latest `postgres` container and run it in the background */
+            docker.image('postgres').withRun { container -> 
+                echo "PostgreSQL running in container ${container.id}" 
+            } 
+        }
+
+    stage "Kubernetes Analysis"
+        node('docker') {
+            // .. 'stage' steps removed
+            /* Pull the latest `postgres` container and run it in the background */
+            docker.image('postgres').withRun { container -> 
+                echo "PostgreSQL running in container ${container.id}" 
+            } 
+        }
 
     stage "Deploy"
 
