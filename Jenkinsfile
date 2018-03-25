@@ -20,13 +20,10 @@ node {
         sh "docker push ${imageName}"
 
     stage "Scan Docker Image"
-        sh "echo scan image for vulnerabilities here"
 
     stage "Source Code Static Analysis"
-
         
     stage "Kubernetes Analysis"
-
 
     stage "Deploy"
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
