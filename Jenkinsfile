@@ -20,7 +20,7 @@ node {
         sh "docker push ${imageName}"
 
     stage "Scan Docker Image"
- 
+        sh "echo scan image for vulnerabilities here"
 
     stage "Source Code Static Analysis"
 
