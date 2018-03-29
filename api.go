@@ -45,7 +45,7 @@ func UnshortenLinkAPI(c *gin.Context) {
 	u.RawQuery = q.Encode()
 
 	c.JSON(200, gin.H{
-		"version":  "0.2",
+		"version":  "0.3",
 		"expanded": finalURL,
 		"original": origURL,
 	})
