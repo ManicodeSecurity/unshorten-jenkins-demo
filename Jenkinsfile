@@ -10,7 +10,7 @@ node {
     appName = "link-unshorten"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}:${tag}"
-    kubeBenchOverrides = "{ \"apiVersion\": \"v1\", \"spec\": { \"hostPID\": true } }"
+    kubeBenchOverrides = "{ \"apiVersion\": \"v1\", \"spec\": { \"hostPID\": true, \"nodeSelector\": { \"kubernetes.io/role\": \"master\" }, \"tolerations\": [ { \"key\": \"node-role.kubernetes.io/master\", \"operator\": \"Exists\", \"effect\": \"NoSchedule\" } ] } }"
     env.BUILDIMG=imageName
 
     stage "Build"
