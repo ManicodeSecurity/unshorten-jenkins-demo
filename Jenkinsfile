@@ -10,7 +10,6 @@ node {
     appName = "link-unshorten"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}:${tag}"
-    kubeBenchOverrides = "{ \"apiVersion\": \"v1\", \"spec\": { \"hostPID\": true, \"nodeSelector\": { \"kubernetes.io/role\": \"master\" }, \"tolerations\": [ { \"key\": \"node-role.kubernetes.io/master\", \"operator\": \"Exists\", \"effect\": \"NoSchedule\" } ] } }"
     env.BUILDIMG=imageName
 
     stage "Build"
@@ -25,8 +24,9 @@ node {
     stage "Source Code Static Analysis"
         
     stage "Kubernetes Analysis"
-        sh "docker run --rm -v `pwd`:/host aquasec/kube-bench:latest install"
-        sh "./kube-bench master"
+        //todo
+        //sh "docker run --rm -v `pwd`:/host aquasec/kube-bench:latest install"
+        //sh "./kube-bench master"
 
     stage "Deploy"
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
