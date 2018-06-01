@@ -25,7 +25,8 @@ node {
     stage "Source Code Static Analysis"
         
     stage "Kubernetes Analysis"
-        sh "kubectl run --rm -i -t kube-bench-node --image=aquasec/kube-bench:latest --restart=Never --overrides=${kubeBenchOverrides} -- node --version 1.8"
+        sh "docker run --rm -v `pwd`:/host aquasec/kube-bench:latest install"
+        sh "./kube-bench master"
 
     stage "Deploy"
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
