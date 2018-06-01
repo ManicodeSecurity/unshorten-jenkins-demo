@@ -24,7 +24,7 @@ node {
     stage "Source Code Static Analysis"
         
     stage "Kubernetes Analysis"
-        sh "kubectl run --rm -i -t kube-bench-master --image=aquasec/kube-bench:latest --restart=Never --overrides='{ \'apiVersion\': \'v1\', \'spec\': { \'hostPID\': true, \'nodeSelector\': { \'kubernetes.io/role\': \'master\' }, \'tolerations\': [ { \'key\': \'node-role.kubernetes.io/master\', \'operator\': \'Exists\', \'effect\': \'NoSchedule\' } ] } }' -- master --version 1.9.4"
+        sh "kubectl run --rm -i -t kube-bench-node --image=aquasec/kube-bench:latest --restart=Never --overrides="{ \"apiVersion\": \"v1\", \"spec\": { \"hostPID\": true } }" -- node --version 1.8"
 
     stage "Deploy"
         sh "sed 's#127.0.0.1:30400/link-unshorten:latest#'$BUILDIMG'#' k8s/deployment.yaml | kubectl apply -f -"
