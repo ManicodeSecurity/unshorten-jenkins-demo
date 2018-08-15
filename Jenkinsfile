@@ -20,9 +20,12 @@ node {
         sh "docker push ${imageName}"
 
     stage "Scan Docker Image"
-        sh "git clone https://github.com/lukebond/microscanner-wrapper"
-        sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/grabhtml.sh ${imageName}"
-   
+        if (fileExists('microscanner-wrapper/grabhtml.sh')) {
+            sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/grabhtml.sh ${imageName}"
+        } else {
+            sh "git clone https://github.com/lukebond/microscanner-wrapper"
+            sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/grabhtml.sh ${imageName}"
+        }   
     stage "Source Code Static Analysis"
         
     stage "Kubernetes Analysis"
