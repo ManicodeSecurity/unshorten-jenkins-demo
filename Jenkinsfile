@@ -20,9 +20,8 @@ node {
         sh "docker push ${imageName}"
 
     stage "Scan Docker Image"
-        sh "wget https://github.com/lukebond/microscanner-wrapper/blob/master/scan.sh"
-        sh "wget https://github.com/lukebond/microscanner-wrapper/blob/master/grabhtml.sh"
-        sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy ./scan.sh ${imageName}"
+        sh "git clone https://github.com/lukebond/microscanner-wrapper"
+        sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy microscanner-wrapper/scan.sh ${imageName}"
    
     stage "Source Code Static Analysis"
         
