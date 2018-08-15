@@ -21,7 +21,7 @@ node {
 
     stage "Scan Docker Image"
         sh "git clone https://github.com/lukebond/microscanner-wrapper"
-        sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy microscanner-wrapper/scan.sh ${imageName}"
+        sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/grabhtml.sh ${imageName}"
    
     stage "Source Code Static Analysis"
         
