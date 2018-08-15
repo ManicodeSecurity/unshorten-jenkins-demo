@@ -29,6 +29,7 @@ node {
     stage "Source Code Static Analysis"
         
     stage "Kubernetes Analysis"
+        sh "kubectl get pods --all-namespaces"
         sh 'kubectl run --rm -i -t kube-bench-node --image=aquasec/kube-bench:latest --restart=Never --overrides="{ \\"apiVersion\\": \\"v1\\", \\"spec\\": { \\"hostPID\\": true } }" -- node --version 1.8'
 
     stage "Deploy"
