@@ -22,7 +22,6 @@ node {
     stage "Scan Docker Image"
         if (fileExists('microscanner-wrapper/grabhtml.sh')) {
             sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/scan.sh ${imageName}"
-            mail to:"jimmy.mesta@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Yay, we passed."
         } else {
             sh "git clone https://github.com/lukebond/microscanner-wrapper"
             sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure --html' microscanner-wrapper/scan.sh ${imageName} > report.html"
