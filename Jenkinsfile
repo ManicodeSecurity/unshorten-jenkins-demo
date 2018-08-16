@@ -24,7 +24,7 @@ node {
             sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/scan.sh ${imageName}"
         } else {
             sh "git clone https://github.com/lukebond/microscanner-wrapper"
-            sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure --html' microscanner-wrapper/scan.sh ${imageName} > report.html"
+            sh "MICROSCANNER_TOKEN=MTZjNjE3Nzc5YTYy MICROSCANNER_OPTIONS='--continue-on-failure' microscanner-wrapper/scan.sh ${imageName}"
         }   
     stage "Source Code Static Analysis"
         
